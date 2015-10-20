@@ -1,1 +1,1 @@
-# workshops-for-dummies
+# Workshops for dummies
