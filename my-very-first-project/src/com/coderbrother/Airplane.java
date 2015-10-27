@@ -86,8 +86,13 @@ public abstract class Airplane {
                 .append("registration: ").append(registration).append(", ")
                 .append("height: ").append(height).append(", ")
                 .append("length: ").append(length).append(", ")
-                .append("engine: ").append(engineQuantity).append(" x ").append(engineType.describe())
+                .append("engine: ").append(engineQuantity).append(" x ").append(engineType)
                 .append("]")
                 .toString();
+    }
+
+    @Override
+    public String toString() {
+        return describe();
     }
 }

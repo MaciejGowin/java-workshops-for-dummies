@@ -14,4 +14,9 @@ public class PassengerAirplane extends Airplane {
     public void setPassengerCapacity(int passengerCapacity) {
         this.passengerCapacity = passengerCapacity;
     }
+
+    @Override
+    public String describe() {
+        return "[PassengerAirplane]" + super.describe();
+    }
 }

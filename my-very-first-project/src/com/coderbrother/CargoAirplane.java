@@ -14,4 +14,9 @@ public class CargoAirplane extends Airplane {
     public void setCargoCapacity(double cargoCapacity) {
         this.cargoCapacity = cargoCapacity;
     }
+
+    @Override
+    public String describe() {
+        return "[CargoAirplane]" + super.describe();
+    }
 }

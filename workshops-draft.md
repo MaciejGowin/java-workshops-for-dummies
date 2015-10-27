@@ -114,26 +114,22 @@ public class Main {
 > Java defines 4 scopes for class fields: default, private, public and protected.
 
 * Create new constructor which takes registration as a parameter
-  
+
+**File:** *com/coderbrother/Airplane.java*
 ```java
-public class Airplane {
-    private String registration;
+    (...)
 
     public Airplane(String newRegistration) {
         registration = newRegistration;
     }
     
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String newRegistration) {
-        registration = newRegistration;
-    }
-}
+    (...)
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -151,7 +147,10 @@ public class Main {
 
 * Override registration with using setter method
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -168,7 +167,10 @@ public class Main {
 
 * Remove setter method invocation
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -186,7 +188,10 @@ public class Main {
 
 * Create second airplane
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -204,8 +209,11 @@ public class Main {
 ```
 
 * Defined Java array of airplanes with predefined size size, warning: try to insert more elements than defined
-  
+
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -230,7 +238,10 @@ public class Main {
 
 * Create an array based on objects
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -255,7 +266,10 @@ public class Main {
 
 * Change the invocation of System.out.println on each object to be invoked in a **for** loop
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -279,7 +293,10 @@ public class Main {
 
 * Add Airplane length, height and engine quantity fields
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+(...)
+
 public class Airplane {
     private String registration;
     private double length;
@@ -326,7 +343,9 @@ public class Airplane {
 
 * Set new properties for Airplane instances and override console output
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -356,18 +375,26 @@ public class Main {
 
 > Java defaults non-initialised primitives to: **0** for int, **0.0** for double. As mentioned before all non-initialized object fields are set to **null**.
 
-> Each primitive has correctonding, built-in Java class defined (ie. Integer for int, Double for double etc.). The conversion between primitive and wrapper is done automatically.
+> Each primitive has corresponding, built-in Java class defined (ie. Integer for int, Double for double etc.). The conversion between primitive and wrapper is done automatically.
 
 * Introduce describe method which returns string description of the airplane
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public String describe() {
         return "[registration: " + registration + ", height: " + height + ", length: " + length
                 + ", engineQuantity: " + engineQuantity + "]";
     }
+    
+    (...)
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
+(...)
+
 public class Main {
     public static void main(String[] args) {
         String programName = "Airplane management";
@@ -395,7 +422,11 @@ public class Main {
 ```
 
 * Change describe method body to use Java StringBuilder
+
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public String describe() {
         StringBuilder builder = new StringBuilder();
         builder
@@ -407,10 +438,16 @@ public class Main {
                 .append("]");
         return builder.toString();
     }
+    
+    (...)
 ```
 
 * Remove variable assignment
+
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public String describe() {
         return new StringBuilder()
                 .append("[")
@@ -421,11 +458,16 @@ public class Main {
                 .append("]")
                 .toString();
     }
+    
+    (...)
 ```
 
 * Add check is an airplane is a small sized plane
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public boolean isSmallSize() {
         double area = length * height;
         if (area < 30.0d) {
@@ -434,13 +476,18 @@ public class Main {
             return false;
         }
     }
+    
+    (...)
 ```
 
 > The condition if/else/then is one of the most important block statement in every programming language next to loops
 
 * Add check is an airplane is a medium sized plane
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public boolean isMediumSize() {
         double area = length * height;
         if (area >= 30.0d && area < 100.0d) {
@@ -449,11 +496,16 @@ public class Main {
             return false;
         }
     }
+    
+    (...)
 ```
 
 * Add check is an airplane is a large sized plane
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public boolean isLargeSize() {
         double area = length * height;
         if (area >= 100.0d) {
@@ -462,11 +514,16 @@ public class Main {
             return false;
         }
     }
+    
+    (...)
 ```
 
 * Create reusable area calculation method
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public double getArea() {
         return length * height;
     }
@@ -497,11 +554,16 @@ public class Main {
             return false;
         }
     }
+    
+    (...)
 ```
 
 * Optimize reusable area constraints
 
+**File:** *com/coderbrother/Airpline.java*
 ```java
+    (...)
+    
     private static final double SMALL_AREA_LIMIT = 30.0d;
     private static final double MEDIUM_AREA_LIMIT = 100.0d;
     
@@ -533,22 +595,33 @@ public class Main {
             return false;
         }
     }
+    
+    (...)
 ```
 
 > "&&" (AND) is an example of logical operator in Java. Another logical operators is: "||" (OR).
 
 * Examine the airplane size
+
+**File:** *com/coderbrother/Main.java*
 ```java
+        (...)
+        
         for (int index = 0; index < airplanes.length; index++) {
             System.out.printf("Airplane: %s, Airplane size: [small: %b, medium: %b, large: %b]\n",
                     airplanes[index].describe(), airplanes[index].isSmallSize(), airplanes[index].isMediumSize(),
                     airplanes[index].isLargeSize());
         }
+        
+        (...)
 ```
 
 * Update the size calculations for code reuse
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public boolean isSmallSize() {
         double area = getArea();
         if (area < SMALL_AREA_LIMIT) {
@@ -570,27 +643,35 @@ public class Main {
     public boolean isLargeSize() {
         return !isSmallSize() && !isMediumSize();
     }
+    
+    (...)
 ```
 
 > "!" is an unary operator. It works on boolean values negating the value of the variable. In the other words it changes the value from **true** yo **false** and **false** to **true**.
 
 #### Introduce different types of airplanes
 
-* Add deufalt constructor with no arguments and update existing one
+* Add default constructor with no arguments and update existing one
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
+    (...)
+    
     public Airplane() {
     }
 
     public Airplane(String registration) {
         this.registration = registration;
     }
+    
+    (...)
 ```
 
 > "this" keyword provides the reference to current instance
 
 * Add passenger and cargo airplane
 
+**File:** *com/coderbrother/PassengerAirplane.java*
 ```java
 package com.coderbrother;
 
@@ -607,6 +688,7 @@ public class PassengerAirplane extends Airplane {
 }
 ```
 
+**File:** *com/coderbrother/CargoAirplane.java*
 ```java
 package com.coderbrother;
 
@@ -623,33 +705,41 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
+        (...)
+        
         CargoAirplane cargoAirplane = new CargoAirplane();
         PassengerAirplane passengerAirplane = new PassengerAirplane();
 
         System.out.printf("Airplane: %s\n", cargoAirplane.describe());
         System.out.printf("Airplane: %s\n", passengerAirplane.describe());
+        
+        (...)
 ```
 
 * Change the airplane variables assignment
 
+**File:** *com/coderbrother/Main.java*
 ```java
+        (...)
+        
         Airplane cargoAirplane = new CargoAirplane();
         Airplane passengerAirplane = new PassengerAirplane();
 
         System.out.printf("Airplane: %s\n", cargoAirplane.describe());
         System.out.printf("Airplane: %s\n", passengerAirplane.describe());
+        
+        (...)
 ```
 
 > In Java you can assign subclass instance to the parent object reference variable. Keep in mind that it will restrict the available methods to the one defined in the parent class.
 
 * Add Airplane subclasses constructor which supports registration number
 
+**File:** *com/coderbrother/PassengerAirplane.java*
 ```java
-package com.coderbrother;
-
-public class PassengerAirplane extends Airplane {
-    private int passengerCapacity;
+    (...)
     
     public PassengerAirplane() {
     }
@@ -658,21 +748,13 @@ public class PassengerAirplane extends Airplane {
         super(registration);
     }
 
-    public int getPassengerCapacity() {
-        return passengerCapacity;
-    }
-
-    public void setPassengerCapacity(int passengerCapacity) {
-        this.passengerCapacity = passengerCapacity;
-    }
+    (...)
 }
 ```
 
+**File:** *com/coderbrother/CargoAirplane.java*
 ```java
-package com.coderbrother;
-
-public class CargoAirplane extends Airplane {
-    private double cargoCapacity;
+    (...)
 
     public CargoAirplane() {
     }
@@ -681,30 +763,28 @@ public class CargoAirplane extends Airplane {
         super(registration);
     }
 
-    public double getCargoCapacity() {
-        return cargoCapacity;
-    }
-
-    public void setCargoCapacity(double cargoCapacity) {
-        this.cargoCapacity = cargoCapacity;
-    }
+    (...)
 }
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
+        (...)
+        
         Airplane cargoAirplane = new CargoAirplane("CCC-333");
         Airplane passengerAirplane = new PassengerAirplane("DDD-444");
 
         System.out.printf("Airplane: %s\n", cargoAirplane.describe());
         System.out.printf("Airplane: %s\n", passengerAirplane.describe());
+        
+        (...)
 ```
 
 * Remove Airplane default constructors
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
-public class Airplane {
-    private static final double SMALL_AREA_LIMIT = 30.0d;
-    private static final double MEDIUM_AREA_LIMIT = 100.0d;
+    (...)
 
     private String registration;
     private double length;
@@ -715,116 +795,41 @@ public class Airplane {
         this.registration = registration;
     }
 
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String newRegistration) {
-        registration = newRegistration;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double newLength) {
-        length = newLength;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double newHeight) {
-        height = newHeight;
-    }
-
-    public int getEngineQuantity() {
-        return engineQuantity;
-    }
-
-    public void setEngineQuantity(int newEngineQuantity) {
-        engineQuantity = newEngineQuantity;
-    }
-
-    public double getArea() {
-        return length * height;
-    }
-
-    public boolean isSmallSize() {
-        double area = getArea();
-        if (area < SMALL_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isMediumSize() {
-        double area = getArea();
-        if (!isSmallSize() && area < MEDIUM_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isLargeSize() {
-        return !isSmallSize() && !isMediumSize();
-    }
-
-    public String describe() {
-        return new StringBuilder()
-                .append("[")
-                .append("registration: ").append(registration).append(", ")
-                .append("height: ").append(height).append(", ")
-                .append("length: ").append(length).append(", ")
-                .append("engineQuantity: ").append(engineQuantity)
-                .append("]")
-                .toString();
-    }
+    (...)
 }
 ```
 
+**File:** *com/coderbrother/PassengerAirplane.java*
 ```java
-public class PassengerAirplane extends Airplane {
+    (...)
+    
     private int passengerCapacity;
 
     public PassengerAirplane(String registration) {
         super(registration);
     }
 
-    public int getPassengerCapacity() {
-        return passengerCapacity;
-    }
-
-    public void setPassengerCapacity(int passengerCapacity) {
-        this.passengerCapacity = passengerCapacity;
-    }
+    (...)
 }
-
 ```
 
+**File:** *com/coderbrother/CargoAirplane.java*
 ```java
-public class CargoAirplane extends Airplane {
+    (...)
+    
     private double cargoCapacity;
 
     public CargoAirplane(String registration) {
         super(registration);
     }
 
-    public double getCargoCapacity() {
-        return cargoCapacity;
-    }
-
-    public void setCargoCapacity(double cargoCapacity) {
-        this.cargoCapacity = cargoCapacity;
-    }
+    (...)
 }
 ```
 
 * Redefine the array of airplanes
 
+**File:** *com/coderbrother/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -864,19 +869,71 @@ public class Main {
 }
 ```
 
+* Redefine the describe method for passenger and cargo airplanes
+
+**File:** *com/coderbrother/PassengerAirplane.java*
+```java
+    (...)
+    
+    @Override
+    public String describe() {
+        return "[PassengerAirplane]";
+    }
+    
+    (...)
+```
+
+**File:** *com/coderbrother/CargoAirplane.java*
+```java
+    (...)
+    
+    @Override
+    public String describe() {
+        return "[CargoAirplane]";
+    }
+    
+    (...)
+```
+
+* Reuse parent class airplane description
+
+**File:** *com/coderbrother/PassengerAirplane.java*
+```java
+    (...)
+
+    @Override
+    public String describe() {
+        return "[PassengerAirplane]" + super.describe();
+    }
+    
+    (...)
+```
+
+**File:** *com/coderbrother/CargoAirplane.java*
+```java
+    (...)
+
+    @Override
+    public String describe() {
+        return "[CargoAirplane]" + super.describe();
+    }
+    
+    (...)
+```
+
 * Block the ability to create and instance of Airplane class
 
+**File:** *com/coderbrother/Airpline.java*
 ```java
 public abstract class Airplane {
     (...)
 }
 ```
 
-
 #### Introduce the airplane engine type
-```java
-package com.coderbrother;
 
+**File:** *com/coderbrother/Airplane.java*
+```java
 public abstract class Airplane {
     private static final double SMALL_AREA_LIMIT = 30.0d;
     private static final double MEDIUM_AREA_LIMIT = 100.0d;
@@ -887,33 +944,7 @@ public abstract class Airplane {
     private String engineType;
     private int engineQuantity;
 
-    public Airplane(String registration) {
-        this.registration = registration;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String newRegistration) {
-        registration = newRegistration;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double newLength) {
-        length = newLength;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double newHeight) {
-        height = newHeight;
-    }
+    (...)
 
     public String getEngineType() {
         return engineType;
@@ -922,41 +953,9 @@ public abstract class Airplane {
     public void setEngineType(String engineType) {
         this.engineType = engineType;
     }
-
-    public int getEngineQuantity() {
-        return engineQuantity;
-    }
-
-    public void setEngineQuantity(int newEngineQuantity) {
-        engineQuantity = newEngineQuantity;
-    }
-
-    public double getArea() {
-        return length * height;
-    }
-
-    public boolean isSmallSize() {
-        double area = getArea();
-        if (area < SMALL_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isMediumSize() {
-        double area = getArea();
-        if (!isSmallSize() && area < MEDIUM_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isLargeSize() {
-        return !isSmallSize() && !isMediumSize();
-    }
-
+    
+    (...)
+    
     public String describe() {
         return new StringBuilder()
                 .append("[")
@@ -970,6 +969,7 @@ public abstract class Airplane {
 }
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -1015,6 +1015,7 @@ public class Main {
 
 * Introduce enumeration for engine type
 
+**File:** *com/coderbrother/EngineType.java*
 ```java
 package com.coderbrother;
 
@@ -1023,6 +1024,7 @@ public enum EngineType {
 }
 ```
 
+**File:** *com/coderbrother/Airplane.java*
 ```java
 public abstract class Airplane {
     private static final double SMALL_AREA_LIMIT = 30.0d;
@@ -1034,34 +1036,8 @@ public abstract class Airplane {
     private EngineType engineType;
     private int engineQuantity;
 
-    public Airplane(String registration) {
-        this.registration = registration;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(String newRegistration) {
-        registration = newRegistration;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double newLength) {
-        length = newLength;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double newHeight) {
-        height = newHeight;
-    }
-
+    (...)
+    
     public EngineType getEngineType() {
         return engineType;
     }
@@ -1070,39 +1046,7 @@ public abstract class Airplane {
         this.engineType = engineType;
     }
 
-    public int getEngineQuantity() {
-        return engineQuantity;
-    }
-
-    public void setEngineQuantity(int newEngineQuantity) {
-        engineQuantity = newEngineQuantity;
-    }
-
-    public double getArea() {
-        return length * height;
-    }
-
-    public boolean isSmallSize() {
-        double area = getArea();
-        if (area < SMALL_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isMediumSize() {
-        double area = getArea();
-        if (!isSmallSize() && area < MEDIUM_AREA_LIMIT) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isLargeSize() {
-        return !isSmallSize() && !isMediumSize();
-    }
+    (...)
 
     public String describe() {
         return new StringBuilder()
@@ -1117,6 +1061,7 @@ public abstract class Airplane {
 }
 ```
 
+**File:** *com/coderbrother/Main.java*
 ```java
         Airplane airplane1 = new CargoAirplane("AAA-111");
         airplane1.setHeight(4.15d);
@@ -1143,7 +1088,7 @@ public abstract class Airplane {
         airplane4.setEngineQuantity(2);
 ```
 
-* Add better engine description
+* Add engine description
 
 **File:** *com/coderbrother/EngineType.java*
 ```java
@@ -1175,3 +1120,149 @@ public enum EngineType {
                 .toString();
     }
 ```
+
+* Examine default airplane and engine string conversion
+
+**File:** *com/coderbrother/Main.java*
+```java
+        for (int index = 0; index < airplanes.length; index++) {
+            System.out.printf("Airplane: %s\n", airplanes[index]);
+        }
+```
+
+
+*  Override default airplane and engine string conversion
+
+**File:** *com/coderbrother/Airplane.java*
+```java
+    (...)
+    
+    public String describe() {
+        return new StringBuilder()
+                .append("[")
+                .append("registration: ").append(registration).append(", ")
+                .append("height: ").append(height).append(", ")
+                .append("length: ").append(length).append(", ")
+                .append("engine: ").append(engineQuantity).append(" x ").append(engineType)
+                .append("]")
+                .toString();
+    }
+
+    @Override
+    public String toString() {
+        return describe();
+    }
+    
+    (...)
+```
+
+**File:** *com/coderbrother/EngineType.java*
+```java
+    (...)
+    
+    @Override
+    public String toString() {
+        return describe();
+    }
+    
+    (...)
+```
+
+> In Java each class is a subclass of Object. The Object class defines few generic functions and "toString()" is the prime example.
+
+#### Introduce an airline
+
+* Create Airline class which has a name
+
+**File:** *com/coderbrother/Airline.java*
+```java
+package com.coderbrother;
+
+public class Airline {
+    private String name;
+
+    public Airline(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
+* Let users add new airplanes to the airline
+
+**File:** *com/coderbrother/Airline.java*
+```java
+(...)
+
+public abstract class Airline {
+    private String name;
+    private ArrayList<Airplane> airplanes;
+
+    public Airline(String name) {
+        this.name = name;
+        this.airplanes = new ArrayList<Airplane>();
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public void addAirplane(Airplane airplane) {
+        airplanes.add(airplane);
+    }
+}
+
+(...)
+```
+
+* Create airlines and assign some airplanes to them
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+
+        Airline airline1 = new Airline("Ryanair");
+        airline1.addAirplane(airplane1);
+        airline1.addAirplane(airplane2);
+
+        Airline airline2 = new Airline("EasyJet");
+        airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
+
+        Airline[] airlines = new Airline[] { airline1, airline2 };
+
+        for (int index = 0; index < airlines.length; index++) {
+            System.out.printf("Airline: %s\n", airlines[index]);
+        }
+
+        (...)
+```
+
+* Create airline describe and toString function similar to the one defined for airplane
+
+**File:** *com/coderbrother/Main.java*
+```java
+    (...)
+    
+    public String describe() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[Airline][name: " + name + "]: ");
+        for (Airplane airplane : airplanes) {
+            stringBuilder.append(airplane);
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return describe();
+    }
+    
+    (...)
+```
+
+
+

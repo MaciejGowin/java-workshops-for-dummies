@@ -12,4 +12,8 @@ public enum EngineType {
     public String describe() {
         return description;
     }
+
+    public String toString() {
+        return describe();
+    }
 }

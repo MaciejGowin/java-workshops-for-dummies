@@ -29,12 +29,18 @@ public class Main {
         airplane4.setEngineType(EngineType.TURBOPROP);
         airplane4.setEngineQuantity(2);
 
-        Airplane[] airplanes = new Airplane[] { airplane1, airplane2, airplane3, airplane4 };
+        Airline airline1 = new Airline("Ryanair");
+        airline1.addAirplane(airplane1);
+        airline1.addAirplane(airplane2);
 
-        for (int index = 0; index < airplanes.length; index++) {
-            System.out.printf("Airplane: %s, Airplane size: [small: %b, medium: %b, large: %b]\n",
-                    airplanes[index].describe(), airplanes[index].isSmallSize(), airplanes[index].isMediumSize(),
-                    airplanes[index].isLargeSize());
+        Airline airline2 = new Airline("EasyJet");
+        airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
+
+        Airline[] airlines = new Airline[] { airline1, airline2 };
+
+        for (int index = 0; index < airlines.length; index++) {
+            System.out.printf("Airline: %s\n", airlines[index]);
         }
 
         System.out.println("Finished: " + programName);
