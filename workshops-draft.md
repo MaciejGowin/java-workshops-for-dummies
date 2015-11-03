@@ -1264,5 +1264,559 @@ public abstract class Airline {
     (...)
 ```
 
+* Make sure that airline's airplane list does not store duplicates
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+    
+        Airline airline2 = new Airline("EasyJet");
+        airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
+        airline2.addAirplane(airplane4);
+    
+        (...)
+```
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+    
+    public void addAirplane(Airplane airplane) {
+        if (!airplanes.contains(airplane)) {
+            airplanes.add(airplane);
+        }
+    }
+    
+    (...)
+```
+
+* Make sure that airplane can't be added to different airlines
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+    
+        Airline airline2 = new Airline("EasyJet");
+        airline2.addAirplane(airplane1);
+        airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
+        airline2.addAirplane(airplane4);
+    
+        (...)
+```
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+    
+    public void addAirplane(Airplane airplane) {
+        String airlineName = AIRLINE_NAME_PER_AIRPLANE_REGISTRATION.get(airplane.getRegistration());
+        if (airlineName == null || airlineName.equals(name)) {
+            if (!airplanes.contains(airplane)) {
+                airplanes.add(airplane);
+            }
+            AIRLINE_NAME_PER_AIRPLANE_REGISTRATION.put(airplane.getRegistration(), name);
+        }
+    }
+    
+    (...)
+```
+
+* Notify user via exception that already assigned airplane was requested to be registered
+
+**File:** *com/coderbrother/AirlineException.java*
+```java
+package com.coderbrother;
+
+public class AirlineException extends RuntimeException {
+    public AirlineException(final String message) {
+        super(message);
+    }
+}
+```
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+    
+    public void addAirplane(Airplane airplane) {
+        String airlineName = AIRLINE_NAME_PER_AIRPLANE_REGISTRATION.get(airplane.getRegistration());
+        if (airlineName == null || airlineName.equals(name)) {
+            if (!airplanes.contains(airplane)) {
+                airplanes.add(airplane);
+            }
+            AIRLINE_NAME_PER_AIRPLANE_REGISTRATION.put(airplane.getRegistration(), name);
+        } else {
+            throw new AirlineException("Airplane already registered: " + airlineName);
+        }
+    }
+    
+    (...)
+```
 
 
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+        
+        Airline airline2 = new Airline("EasyJet");
+        // Throws exception - airplane already registered
+        // airline2.addAirplane(airplane1); 
+        airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
+        airline2.addAirplane(airplane4);
+    
+        (...)
+```
+
+
+
+#### Introduce a flight
+
+* Create a flight class which is defined as Airline inner class
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+
+    public class Flight {
+        private String number;
+
+        private Flight(final String number) {
+            this.number = number;
+        }
+    }
+
+    (...)
+```
+
+*  Let client create an flight for given flight number
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+    
+    public Flight scheduleFlight(final String flightNumber) {
+        return new Flight(flightNumber);
+    }
+    
+    (...)
+    
+    public class Flight {
+        private String number;
+
+        private Flight(final String number) {
+            this.number = number;
+            System.out.printf("[Flight][airlineName: %s, number: %s]\n", Airline.this.getName(), number);
+        }
+    }
+    
+    (...)
+```
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111");
+
+        (...)
+```
+
+* Add ability to take off, land a plane with tracking information about current flight state
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+    
+    public class Flight {
+        private String number;
+        private FlightState state;
+
+        private Flight(final String number) {
+            this.number = number;
+            this.state = FlightState.SCHEDULED;
+            trackState();
+        }
+
+        public void takeOff() {
+            this.state = FlightState.IN_THE_AIR;
+            trackState();
+        }
+
+        public void land() {
+            this.state = FlightState.LANDED;
+            trackState();
+        }
+
+        private void trackState() {
+            System.out.printf("[Flight][airlineName: %s, number: %s, state: %s]\n", Airline.this.getName(), number, state);
+        }
+    }
+
+    public enum FlightState {
+        SCHEDULED, IN_THE_AIR, LANDED;
+    }
+    
+    (...)
+```
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+   
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111");
+
+        airline1Flight1.land();
+        airline1Flight1.takeOff();
+        airline1Flight1.takeOff();
+        airline1Flight1.land();
+        airline1Flight1.takeOff();
+        airline1Flight1.land();
+
+        airline2Flight1.takeOff();
+        airline2Flight1.land();
+        
+        (...)
+```
+
+* Block the improper flight state change, allow only change from SCHEDULED to IN_THE_AIR and IN_THE_AIR to LANDED
+
+**File:** *com/coderbrother/Airline.java*
+```java
+        (...)
+
+        public void takeOff() {
+            if (state == FlightState.SCHEDULED) {
+                state = FlightState.IN_THE_AIR;
+                trackState();
+            } else {
+                throw new AirlineException("Cannot change status: " + state + " -> " + FlightState.IN_THE_AIR);
+            }
+        }
+
+        public void land() {
+            if (state == FlightState.IN_THE_AIR) {
+                state = FlightState.LANDED;
+                trackState();
+            } else {
+                throw new AirlineException("Cannot change status: " + state + " -> " + FlightState.LANDED);
+            }
+        }
+
+        (...)
+```
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+        
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111");
+
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+        airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        airline1Flight1.land();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+
+        airline2Flight1.takeOff();
+        airline2Flight1.land();
+        
+        (...)
+```
+
+* Do not allow client to schedule a flight with empty number
+
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+
+    public Flight scheduleFlight(final String flightNumber, final String airplaneRegistration) {
+        if (flightNumber == null || flightNumber.equals("")) {
+            throw new AirlineException("Flight number cannot be empty");
+        }
+        
+        return new Flight(flightNumber, airplane);
+    }
+   
+    (...)
+```
+
+* Defined the flight airplane
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+
+    public Flight scheduleFlight(final String flightNumber, final String airplaneRegistration) {
+        if (flightNumber == null || flightNumber.equals("")) {
+            throw new AirlineException("Flight number cannot be empty");
+        }
+        
+        Airplane airplane = getAirplane(airplaneRegistration);
+        if (airplane == null) {
+            throw new AirlineException("Airplane doesn't exist: " + airplaneRegistration);
+        }
+
+        return new Flight(flightNumber, airplane);
+    }
+
+    public Airplane getAirplane(final String airplaneRegistration) {
+        if (airplaneRegistration != null && !airplaneRegistration.equals("")) {
+            for (Airplane airplane : airplanes) {
+                if (airplaneRegistration.equals(airplane.getRegistration())) {
+                    return airplane;
+                }
+            }
+        }
+        return null;
+    }
+   
+    (...)
+   
+    public class Flight {
+        private String number;
+        private FlightState state;
+        private Airplane airplane;
+
+        private Flight(final String number, final Airplane airplane) {
+            this.number = number;
+            this.state = FlightState.SCHEDULED;
+            this.airplane = airplane;
+            trackState();
+        }
+
+        public void takeOff() {
+            if (state == FlightState.SCHEDULED) {
+                state = FlightState.IN_THE_AIR;
+                trackState();
+            } else {
+                throw new AirlineException("Cannot change status: " + state + " -> " + FlightState.IN_THE_AIR);
+            }
+        }
+
+        public void land() {
+            if (state == FlightState.IN_THE_AIR) {
+                state = FlightState.LANDED;
+                trackState();
+            } else {
+                throw new AirlineException("Cannot change status: " + state + " -> " + FlightState.LANDED);
+            }
+        }
+
+        private void trackState() {
+            System.out.printf("[Flight][airlineName: %s, number: %s, state: %s, airplaneRegistration: %s]\n", Airline.this.getName(), number, state, airplane.getRegistration());
+        }
+    }
+   
+    (...)
+```
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+        
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111", "AAA-111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111", "DDD-444");
+        // Throws exception - airplane doesn't exist
+        // Airline.Flight airline2Flight2 = airline2.scheduleFlight("EJ-1111", "AAA-111");
+        
+        (...)
+```
+
+* Optymize the empty value check by extracting to utility class
+
+**File:** *com/coderbrother/StringUtils.java*
+```java
+package com.coderbrother;
+
+public class StringUtils {
+    public static boolean isEmpty(String value) {
+        return value == null || value.equals("");
+    }
+}
+```
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+
+    public Flight scheduleFlight(final String flightNumber, final String airplaneRegistration) {
+        if (StringUtils.isEmpty(flightNumber)) {
+            throw new AirlineException("Flight number cannot be empty");
+        }
+
+        Airplane airplane = getAirplane(airplaneRegistration);
+        if (airplane == null) {
+            throw new AirlineException("Airplane doesn't exist: " + airplaneRegistration);
+        }
+
+        return new Flight(flightNumber, airplane);
+    }
+
+    public Airplane getAirplane(final String airplaneRegistration) {
+        if (!StringUtils.isEmpty(airplaneRegistration)) {
+            for (Airplane airplane : airplanes) {
+                if (airplaneRegistration.equals(airplane.getRegistration())) {
+                    return airplane;
+                }
+            }
+        }
+        return null;
+    }
+   
+    (...)
+```
+
+* Do not allow client to add two flights with the same number
+
+**File:** *com/coderbrother/Airline.java*
+```java
+    (...)
+
+    private String name;
+    private ArrayList<Airplane> airplanes;
+    private ArrayList<Flight> flights;
+
+    public Airline(String name) {
+        this.name = name;
+        this.airplanes = new ArrayList<Airplane>();
+        this.flights = new ArrayList<Flight>();
+    }
+    
+    (...)
+    
+    public Flight scheduleFlight(final String flightNumber, final String airplaneRegistration) {
+        if (StringUtils.isEmpty(flightNumber)) {
+            throw new AirlineException("Flight number cannot be empty");
+        }
+
+        Airplane airplane = getAirplane(airplaneRegistration);
+        if (airplane == null) {
+            throw new AirlineException("Airplane doesn't exist: " + airplaneRegistration);
+        }
+
+        Flight flight = getFlight(flightNumber);
+        if (flight != null) {
+            throw new AirlineException("Flight number already exists: " + flightNumber);
+        }
+
+        Flight newFlight = new Flight(flightNumber, airplane);
+        flights.add(newFlight);
+        return newFlight;
+    }
+    
+    (...)
+    
+    public Flight getFlight(final String flightNumber) {
+        if (!StringUtils.isEmpty(flightNumber)) {
+            for (Flight flight : flights) {
+                if (flightNumber.equals(flight.getNumber())) {
+                    return flight;
+                }
+            }
+        }
+        return null;
+    }
+    
+    (...)
+    
+    public class Flight {
+        private String number;
+        private FlightState state;
+        private Airplane airplane;
+
+        private Flight(final String number, final Airplane airplane) {
+            this.number = number;
+            this.state = FlightState.SCHEDULED;
+            this.airplane = airplane;
+            trackState();
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+    (...)
+```
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+    
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111", "AAA-111");
+        // Throws exception - flight number already exists
+        // Airline.Flight airline1Flight2 = airline1.scheduleFlight("FR-1111", "BBB-222");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111", "DDD-444");
+        // Throws exception - airplane doesn't exist
+        // Airline.Flight airline2Flight2 = airline2.scheduleFlight("EJ-1111", "AAA-111");
+    
+        (...)
+```
+
+* Do not allow a plane to take off if it's alread in the air and assigned for two different flights
+
+**File:** *com/coderbrother/Airline.java*
+```java
+        (...)
+
+        public void takeOff() {
+            for (Flight flight : flights) {
+                if (flight.state == FlightState.IN_THE_AIR
+                        && flight.airplane.getRegistration().equals(airplane.getRegistration())) {
+                    throw new AirlineException("Airplane is currently in the air");
+                }
+            }
+
+            if (state == FlightState.SCHEDULED) {
+                state = FlightState.IN_THE_AIR;
+                trackState();
+            } else {
+                throw new AirlineException("Cannot change status: " + state + " -> " + FlightState.IN_THE_AIR);
+            }
+        }
+        
+        (...)
+```
+
+
+**File:** *com/coderbrother/Main.java*
+```java
+        (...)
+        
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111", "AAA-111");
+        // Throws exception - flight number already exists
+        // Airline.Flight airline1Flight2 = airline1.scheduleFlight("FR-1111", "BBB-222");
+        Airline.Flight airline1Flight3 = airline1.scheduleFlight("FR-1112", "AAA-111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111", "DDD-444");
+        // Throws exception - airplane doesn't exist
+        // Airline.Flight airline2Flight2 = airline2.scheduleFlight("EJ-1111", "AAA-111");
+
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+        airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        // Throws exception - airplane in use
+        // airline1Flight3.takeOff();
+        airline1Flight1.land();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+
+        airline2Flight1.takeOff();
+        airline2Flight1.land();
+        
+        (...)
+```

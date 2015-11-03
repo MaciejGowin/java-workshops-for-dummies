@@ -34,7 +34,10 @@ public class Main {
         airline1.addAirplane(airplane2);
 
         Airline airline2 = new Airline("EasyJet");
+        // Throws exception - airplane already registered
+        // airline2.addAirplane(airplane1);
         airline2.addAirplane(airplane3);
+        airline2.addAirplane(airplane4);
         airline2.addAirplane(airplane4);
 
         Airline[] airlines = new Airline[] { airline1, airline2 };
@@ -42,6 +45,30 @@ public class Main {
         for (int index = 0; index < airlines.length; index++) {
             System.out.printf("Airline: %s\n", airlines[index]);
         }
+
+        Airline.Flight airline1Flight1 = airline1.scheduleFlight("FR-1111", "AAA-111");
+        // Throws exception - flight number already exists
+        // Airline.Flight airline1Flight2 = airline1.scheduleFlight("FR-1111", "BBB-222");
+        Airline.Flight airline1Flight3 = airline1.scheduleFlight("FR-1112", "AAA-111");
+        Airline.Flight airline2Flight1 = airline2.scheduleFlight("EJ-1111", "DDD-444");
+        // Throws exception - airplane doesn't exist
+        // Airline.Flight airline2Flight2 = airline2.scheduleFlight("EJ-1111", "AAA-111");
+
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+        airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        // Throws exception - airplane in use
+        // airline1Flight3.takeOff();
+        airline1Flight1.land();
+        // Throws exception - wrong state change
+        // airline1Flight1.takeOff();
+        // Throws exception - wrong state change
+        // airline1Flight1.land();
+
+        airline2Flight1.takeOff();
+        airline2Flight1.land();
 
         System.out.println("Finished: " + programName);
     }
