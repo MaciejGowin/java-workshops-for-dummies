@@ -1,4 +1,4 @@
-*By Maciej Gowin & airfake.com, under MIT license*
+*By Maciej Gowin & coderbrother.com, under MIT license*
 
 ## Create "Airfake" project
 
