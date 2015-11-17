@@ -1,15 +1,18 @@
-#### Create sample project
+*By Maciej Gowin & airfake.com, under MIT license*
 
-* Defined project name, ie. "my-very-first-project"
+## Create "Airfake" project
 
-* Create package com.coderborther
+* Defined the project name, ie. "airfake"
 
-* Preview generated class: Main
+* Create a package: com.airfake
 
-#### Introduce console output
+* Preview previously generated class: Main
 
-* In generated Main class create System.out invocation
+## Create startup output
 
+* In the Main class create System.out invocations
+
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -19,10 +22,11 @@ public class Main {
 }
 ```
 
-* Replace inline String with String variable and utilize string concatenation
+* Replace the inline string with a String variable and utilize a string concatenation
 
+**File:** *com/airfake/Main.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,20 +37,22 @@ public class Main {
 }
 ```
 
-#### Introduce new class
+## Introduce an Airplane class
 
-* Create new Airplane class 
+* Create an Airplane class 
 
+**File:** *com/airfake/Airplane.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class Airplane {
     public String registration;
 }
 ```
 
-* Create an instance of newly created class in main class
+* Create an instance of newly created class in the Main class
 
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -65,6 +71,7 @@ public class Main {
 
 * Set the registration number
 
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -80,8 +87,9 @@ public class Main {
 }
 ```
 
-* Create getter and setter for registration and make registration field **private**
+* Create a getter and a setter for the registration field and make it **private**
 
+**File:** *com/airfake/Airplane.java*
 ```java
 public class Airplane {
     private String registration;
@@ -96,6 +104,7 @@ public class Airplane {
 }
 ```
 
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -111,11 +120,12 @@ public class Main {
 }
 ```
 
-> Java defines 4 scopes for class fields: default, private, public and protected.
+> The **registration** field of the **Airplane** is **public** which means that it can be accessed from anywhere.
+> Java defines 4 access modifiers: **public**, **package**, **protected** and **private**.
 
-* Create new constructor which takes registration as a parameter
+* Create new constructor which takes the registration as a parameter
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
 
@@ -126,7 +136,9 @@ public class Main {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+> Constructors define the way a class is instantiated. If a constructor is not defined, default one will be generated automatically.
+
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -143,11 +155,11 @@ public class Main {
 }
 ```
 
-> Once custom constructor is defined default constructor is disabled automatically. If you want to keep the default constructor you have to define it manually.
+> Once the custom constructor is defined the default constructor is disabled automatically. If you want to keep the default constructor you have to define it implicitly.
 
-* Override registration with using setter method
+* Override the registration with a "setter" method
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -165,9 +177,9 @@ public class Main {
 }
 ```
 
-* Remove setter method invocation
+* Remove the "setter" method invocation
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -184,11 +196,11 @@ public class Main {
 }
 ```
 
-#### Introduce an array
+## Introduce an array
 
 * Create second airplane
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -208,9 +220,9 @@ public class Main {
 }
 ```
 
-* Defined Java array of airplanes with predefined size size, warning: try to insert more elements than defined
+* Define a Java array of airplanes with predefined size
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -234,11 +246,11 @@ public class Main {
 }
 ```
 
-> If you try to add more elements than defined size of an array, **ArrayIndexOutOfBoundsException** exception will be thrown.
+> If you try to add more elements than the defined size of the array, **ArrayIndexOutOfBoundsException** exception will be thrown.
 
 * Create an array based on objects
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -260,13 +272,13 @@ public class Main {
 }
 ```
 
-> Java will define the size of an array based on the objects in the constructor
+> Java will define the size of an array based on the objects in the constructor.
 
-#### Introduction to "for" loop
+## Introduce a "for" loop
 
 * Change the invocation of System.out.println on each object to be invoked in a **for** loop
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -289,11 +301,11 @@ public class Main {
 }
 ```
 
-#### Introduce new primitive types
+## Introduce new primitive types
 
 * Add Airplane length, height and engine quantity fields
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
 (...)
 
@@ -341,9 +353,9 @@ public class Airplane {
 }
 ```
 
-* Set new properties for Airplane instances and override console output
+* Set new properties on Airplane instances and override console output
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 public class Main {
@@ -375,11 +387,11 @@ public class Main {
 
 > Java defaults non-initialised primitives to: **0** for int, **0.0** for double. As mentioned before all non-initialized object fields are set to **null**.
 
-> Each primitive has corresponding, built-in Java class defined (ie. Integer for int, Double for double etc.). The conversion between primitive and wrapper is done automatically.
+> Each primitive has corresponding, built-in Java class defined (ie. Integer for int, Double for double etc.). The conversion between a primitive and a wrapper is done automatically.
 
-* Introduce describe method which returns string description of the airplane
+* Introduce describe method which returns a string description of the airplane
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -391,7 +403,7 @@ public class Main {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 (...)
 
@@ -421,10 +433,14 @@ public class Main {
 }
 ```
 
-* Change describe method body to use Java StringBuilder
+* Change the describe method body to use a Java StringBuilder
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
+    (...)
+    
+    import java.util.StringBuilder;
+    
     (...)
     
     public String describe() {
@@ -442,9 +458,11 @@ public class Main {
     (...)
 ```
 
-* Remove variable assignment
+> StringBuilder is one of the built-in utility classes. It has to be imported before it is used.
 
-**File:** *com/coderbrother/Airplane.java*
+* Remove a variable assignment
+
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -462,9 +480,9 @@ public class Main {
     (...)
 ```
 
-* Add check is an airplane is a small sized plane
+* Add a check if an airplane is a small sized plane
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -480,11 +498,11 @@ public class Main {
     (...)
 ```
 
-> The condition if/else/then is one of the most important block statement in every programming language next to loops
+> The condition if/else/then is one of the most important block statement in every programming language.
 
-* Add check is an airplane is a medium sized plane
+* Add a check if an airplane is a medium sized plane
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -500,9 +518,9 @@ public class Main {
     (...)
 ```
 
-* Add check is an airplane is a large sized plane
+* Add a check if an airplane is a large sized plane
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -518,9 +536,9 @@ public class Main {
     (...)
 ```
 
-* Create reusable area calculation method
+* Create a reusable area calculation method
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -558,9 +576,9 @@ public class Main {
     (...)
 ```
 
-* Optimize reusable area constraints
+* Extract the area constraints
 
-**File:** *com/coderbrother/Airpline.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -599,11 +617,11 @@ public class Main {
     (...)
 ```
 
-> "&&" (AND) is an example of logical operator in Java. Another logical operators is: "||" (OR).
+> "&&" (AND) is an example of logical operator in Java. Another well know logical operators is "||" (OR).
 
 * Examine the airplane size
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -618,7 +636,7 @@ public class Main {
 
 * Update the size calculations for code reuse
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -647,13 +665,14 @@ public class Main {
     (...)
 ```
 
-> "!" is an unary operator. It works on boolean values negating the value of the variable. In the other words it changes the value from **true** yo **false** and **false** to **true**.
+> "!" is an unary operator. It works on boolean values by negating the value of the variable. In the other words
+> it changes the value from **true** to **false** and **false** to **true**.
 
-#### Introduce different types of airplanes
+## Introduce different types of airplanes
 
-* Add default constructor with no arguments and update existing one
+* Add a default constructor with no arguments and update existing one
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -667,13 +686,13 @@ public class Main {
     (...)
 ```
 
-> "this" keyword provides the reference to current instance
+> **this** keyword provides the reference to the current instance.
 
-* Add passenger and cargo airplane
+* Add passenger and cargo airplanes
 
-**File:** *com/coderbrother/PassengerAirplane.java*
+**File:** *com/airfake/PassengerAirplane.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class PassengerAirplane extends Airplane {
     private int passengerCapacity;
@@ -688,9 +707,9 @@ public class PassengerAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/CargoAirplane.java*
+**File:** *com/airfake/CargoAirplane.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class CargoAirplane extends Airplane {
     private double cargoCapacity;
@@ -705,7 +724,7 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -720,7 +739,7 @@ public class CargoAirplane extends Airplane {
 
 * Change the airplane variables assignment
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -733,11 +752,12 @@ public class CargoAirplane extends Airplane {
         (...)
 ```
 
-> In Java you can assign subclass instance to the parent object reference variable. Keep in mind that it will restrict the available methods to the one defined in the parent class.
+> In Java you can assign subclass instance to the parent object reference variable. Keep in mind that it will restrict
+> the available methods to the one defined in the parent class.
 
-* Add Airplane subclasses constructor which supports registration number
+* Add Airplane subclasses constructors which support registration numbers
 
-**File:** *com/coderbrother/PassengerAirplane.java*
+**File:** *com/airfake/PassengerAirplane.java*
 ```java
     (...)
     
@@ -752,7 +772,7 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/CargoAirplane.java*
+**File:** *com/airfake/CargoAirplane.java*
 ```java
     (...)
 
@@ -767,7 +787,7 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -782,7 +802,7 @@ public class CargoAirplane extends Airplane {
 
 * Remove Airplane default constructors
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
 
@@ -799,7 +819,7 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/PassengerAirplane.java*
+**File:** *com/airfake/PassengerAirplane.java*
 ```java
     (...)
     
@@ -813,7 +833,7 @@ public class CargoAirplane extends Airplane {
 }
 ```
 
-**File:** *com/coderbrother/CargoAirplane.java*
+**File:** *com/airfake/CargoAirplane.java*
 ```java
     (...)
     
@@ -829,7 +849,7 @@ public class CargoAirplane extends Airplane {
 
 * Redefine the array of airplanes
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -871,7 +891,7 @@ public class Main {
 
 * Redefine the describe method for passenger and cargo airplanes
 
-**File:** *com/coderbrother/PassengerAirplane.java*
+**File:** *com/airfake/PassengerAirplane.java*
 ```java
     (...)
     
@@ -883,7 +903,7 @@ public class Main {
     (...)
 ```
 
-**File:** *com/coderbrother/CargoAirplane.java*
+**File:** *com/airfake/CargoAirplane.java*
 ```java
     (...)
     
@@ -895,9 +915,9 @@ public class Main {
     (...)
 ```
 
-* Reuse parent class airplane description
+* Reuse parent class airplane descriptions
 
-**File:** *com/coderbrother/PassengerAirplane.java*
+**File:** *com/airfake/PassengerAirplane.java*
 ```java
     (...)
 
@@ -909,7 +929,7 @@ public class Main {
     (...)
 ```
 
-**File:** *com/coderbrother/CargoAirplane.java*
+**File:** *com/airfake/CargoAirplane.java*
 ```java
     (...)
 
@@ -921,18 +941,20 @@ public class Main {
     (...)
 ```
 
-* Block the ability to create and instance of Airplane class
+* Block the ability to create an instance of Airplane class
 
-**File:** *com/coderbrother/Airpline.java*
+**File:** *com/airfake/Airplane.java*
 ```java
 public abstract class Airplane {
     (...)
 }
 ```
 
-#### Introduce the airplane engine type
+> An abstract class can't be instantiated.
 
-**File:** *com/coderbrother/Airplane.java*
+## Introduce the airplane engine type
+
+**File:** *com/airfake/Airplane.java*
 ```java
 public abstract class Airplane {
     private static final double SMALL_AREA_LIMIT = 30.0d;
@@ -969,7 +991,7 @@ public abstract class Airplane {
 }
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -1013,18 +1035,18 @@ public class Main {
 }
 ```
 
-* Introduce enumeration for engine type
+* Introduce an enumeration for the engine type
 
-**File:** *com/coderbrother/EngineType.java*
+**File:** *com/airfake/EngineType.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public enum EngineType {
     JET, TURBOPROP;
 }
 ```
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
 public abstract class Airplane {
     private static final double SMALL_AREA_LIMIT = 30.0d;
@@ -1061,7 +1083,7 @@ public abstract class Airplane {
 }
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         Airplane airplane1 = new CargoAirplane("AAA-111");
         airplane1.setHeight(4.15d);
@@ -1088,9 +1110,9 @@ public abstract class Airplane {
         airplane4.setEngineQuantity(2);
 ```
 
-* Add engine description
+* Add an engine description
 
-**File:** *com/coderbrother/EngineType.java*
+**File:** *com/airfake/EngineType.java*
 ```java
 public enum EngineType {
     JET("Jet"), TURBOPROP("Turboprop");
@@ -1107,7 +1129,7 @@ public enum EngineType {
 }
 ```
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     public String describe() {
         return new StringBuilder()
@@ -1121,9 +1143,9 @@ public enum EngineType {
     }
 ```
 
-* Examine default airplane and engine string conversion
+* Examine the default airplane and engine string conversion
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         for (int index = 0; index < airplanes.length; index++) {
             System.out.printf("Airplane: %s\n", airplanes[index]);
@@ -1131,9 +1153,9 @@ public enum EngineType {
 ```
 
 
-*  Override default airplane and engine string conversion
+*  Override the default airplane and engine string conversion
 
-**File:** *com/coderbrother/Airplane.java*
+**File:** *com/airfake/Airplane.java*
 ```java
     (...)
     
@@ -1156,7 +1178,7 @@ public enum EngineType {
     (...)
 ```
 
-**File:** *com/coderbrother/EngineType.java*
+**File:** *com/airfake/EngineType.java*
 ```java
     (...)
     
@@ -1170,13 +1192,13 @@ public enum EngineType {
 
 > In Java each class is a subclass of Object. The Object class defines few generic functions and "toString()" is the prime example.
 
-#### Introduce an airline
+## Introduce an airline
 
-* Create Airline class which has a name
+* Create an Airline class with a name defined
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class Airline {
     private String name;
@@ -1191,9 +1213,9 @@ public class Airline {
 }
 ```
 
-* Let users add new airplanes to the airline
+* Let users to add new airplanes to the airline
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
 (...)
 
@@ -1218,9 +1240,9 @@ public abstract class Airline {
 (...)
 ```
 
-* Create airlines and assign some airplanes to them
+* Create airlines with airplanes assigned
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
 
@@ -1241,9 +1263,9 @@ public abstract class Airline {
         (...)
 ```
 
-* Create airline describe and toString function similar to the one defined for airplane
+* Create airline describe and toString methods similar to the one defined for the Airplane class
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
     (...)
     
@@ -1264,9 +1286,9 @@ public abstract class Airline {
     (...)
 ```
 
-* Make sure that airline's airplane list does not store duplicates
+* Make sure that airline's airplane list does not contain duplicates
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
     
@@ -1278,7 +1300,7 @@ public abstract class Airline {
         (...)
 ```
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
     
@@ -1293,7 +1315,7 @@ public abstract class Airline {
 
 * Make sure that airplane can't be added to different airlines
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
     
@@ -1306,7 +1328,7 @@ public abstract class Airline {
         (...)
 ```
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
     
@@ -1323,11 +1345,11 @@ public abstract class Airline {
     (...)
 ```
 
-* Notify user via exception that already assigned airplane was requested to be registered
+* Notify user (with an exception) that already assigned airplane was requested to be registered
 
-**File:** *com/coderbrother/AirlineException.java*
+**File:** *com/airfake/AirlineException.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class AirlineException extends RuntimeException {
     public AirlineException(final String message) {
@@ -1336,7 +1358,7 @@ public class AirlineException extends RuntimeException {
 }
 ```
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
     
@@ -1355,8 +1377,7 @@ public class AirlineException extends RuntimeException {
     (...)
 ```
 
-
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -1372,11 +1393,11 @@ public class AirlineException extends RuntimeException {
 
 
 
-#### Introduce a flight
+## Introduce a flight
 
-* Create a flight class which is defined as Airline inner class
+* Create a Flight class which is defined as Airline inner class
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
 
@@ -1393,7 +1414,7 @@ public class AirlineException extends RuntimeException {
 
 *  Let client create an flight for given flight number
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
     
@@ -1415,7 +1436,7 @@ public class AirlineException extends RuntimeException {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
 
@@ -1425,9 +1446,9 @@ public class AirlineException extends RuntimeException {
         (...)
 ```
 
-* Add ability to take off, land a plane with tracking information about current flight state
+* Add take off and land a plane methods with tracking information about the current flight state
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
     
@@ -1463,7 +1484,7 @@ public class AirlineException extends RuntimeException {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
    
@@ -1483,9 +1504,9 @@ public class AirlineException extends RuntimeException {
         (...)
 ```
 
-* Block the improper flight state change, allow only change from SCHEDULED to IN_THE_AIR and IN_THE_AIR to LANDED
+* Block the improper flight state change, allow state change: from SCHEDULED to IN_THE_AIR and from IN_THE_AIR to LANDED
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
         (...)
 
@@ -1510,7 +1531,7 @@ public class AirlineException extends RuntimeException {
         (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -1534,10 +1555,10 @@ public class AirlineException extends RuntimeException {
         (...)
 ```
 
-* Do not allow client to schedule a flight with empty number
+* Do not let client to schedule a flight with an empty number
 
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
 
@@ -1554,7 +1575,7 @@ public class AirlineException extends RuntimeException {
 
 * Defined the flight airplane
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
 
@@ -1622,7 +1643,7 @@ public class AirlineException extends RuntimeException {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
@@ -1634,11 +1655,11 @@ public class AirlineException extends RuntimeException {
         (...)
 ```
 
-* Optymize the empty value check by extracting to utility class
+* Optymize an empty value check by extracting a common method to the utility class
 
-**File:** *com/coderbrother/StringUtils.java*
+**File:** *com/airfake/StringUtils.java*
 ```java
-package com.coderbrother;
+package com.airfake;
 
 public class StringUtils {
     public static boolean isEmpty(String value) {
@@ -1647,7 +1668,7 @@ public class StringUtils {
 }
 ```
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
 
@@ -1678,9 +1699,9 @@ public class StringUtils {
     (...)
 ```
 
-* Do not allow client to add two flights with the same number
+* Do not let client to add two flights with the same number
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
     (...)
 
@@ -1750,7 +1771,7 @@ public class StringUtils {
     (...)
 ```
 
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
     
@@ -1764,9 +1785,9 @@ public class StringUtils {
         (...)
 ```
 
-* Do not allow a plane to take off if it's alread in the air and assigned for two different flights
+* Do not allow a plane to take off if it's already in the air (valid for airplanes assigned to two different flights)
 
-**File:** *com/coderbrother/Airline.java*
+**File:** *com/airfake/Airline.java*
 ```java
         (...)
 
@@ -1789,8 +1810,7 @@ public class StringUtils {
         (...)
 ```
 
-
-**File:** *com/coderbrother/Main.java*
+**File:** *com/airfake/Main.java*
 ```java
         (...)
         
